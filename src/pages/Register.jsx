@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../provider/AuthProvider'
 
 const Register = () => {
+
+  const {register} = useContext(AuthContext);
     const handleSubmit = (e) =>{
         e.preventDefault()
         console.log("first")
@@ -13,15 +16,29 @@ const Register = () => {
         const user = {email,password}
         // console.log(user)
 
-        fetch("http://localhost:5000/users",{
-          method:"POST",
-          headers:{
-            "content-type":"application/json"
-          },
-          body: JSON.stringify(user)
+        // firebase register
+        register(email,password)
+        .then(result => {
+          console.log(result.user)
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
+        .catch((err)=>{
+          console.log(err)
+        })
+
+
+        // --- this part for register user and save data in mongoDB ---//
+
+        // fetch("http://localhost:5000/users",{
+        //   method:"POST",
+        //   headers:{
+        //     "content-type":"application/json"
+        //   },
+        //   body: JSON.stringify(user)
+        // })
+        // .then(res => res.json())
+        // .then(data => console.log(data))
+
+         // --- this part for register user and save data in mongoDB ---//
     }
   return (
     <div>
