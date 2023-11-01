@@ -13,10 +13,10 @@ const AddProduct = () => {
     const product = {pName,price,img}
     console.log(product)
 
-    // axios.post("/dashboard/products",product)
-    // .then((result)=>{
-    //   console.log(result)
-    // })
+    axios.post("http://localhost:5000/dashboard/products",product)
+    .then((result)=>{
+      console.log(result)
+    })
 
 
 
