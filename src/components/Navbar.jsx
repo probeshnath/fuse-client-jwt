@@ -3,24 +3,21 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../provider/AuthProvider'
 
 const Navbar = () => {
-  const { logoutUser } = useContext(AuthContext);
+  const { logoutUser,user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logoutUser()
-      .then(result => {
-        console.log("logout")
-        navigate("/login")
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    .then((result) => console.log(result))
+    .catch((err)=>{
+      console.log(err)
+    })
   }
 
   const links = <>
     <li> <Link to="/">Home</Link> </li>
     <li> <Link to="/products">Products</Link> </li>
-    <li> <Link to="/login">Login</Link> </li>
+    {/* <li> <Link to="/login">Login</Link> </li> */}
     <li> <Link to="/dashboard">Dashboard</Link> </li>
 
   </>
@@ -43,7 +40,10 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <button onClick={handleLogout} className="btn">Logout</button>
+        {
+          user ?  <button onClick={handleLogout} className="btn">Logout</button> : <li> <Link to="/login">Login</Link> </li>
+        }
+       
       </div>
     </div>
   )
