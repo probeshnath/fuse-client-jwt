@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../provider/AuthProvider'
+import SocialLogin from '../components/SocialLogin';
 
 const Register = () => {
 
@@ -62,6 +63,7 @@ const Register = () => {
         </div>
         <p>Already have an account? <Link to='/login' className='text-blue-800 font-bold'>Login</Link> </p>
       </form>
+    <SocialLogin />
     </div>
     </div>
   )
