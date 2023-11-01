@@ -10,9 +10,14 @@ import MainLayout from './layout/MainLayout.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import DashBoardLayout from './layout/DashBoardLayout.jsx';
-import Dashboard from './pages/Dashboard/Dashboard.jsx';
+import Dashboard from './pages/dashboard/Dashboard.jsx';
 import Products from './pages/Products';
 import AuthProvider from './provider/AuthProvider';
+import HomeDashboard from './pages/dashboard/HomeDashbord.jsx'
+import AllProducts from './pages/dashboard/AllProducts.jsx'
+import AddProduct from './pages/dashboard/AddProduct.jsx'
+import UpdateProduct from './pages/dashboard/UpdateProduct.jsx';
+import Users from './pages/dashboard/Users.jsx';
 
 const router = createBrowserRouter([
   {
@@ -44,7 +49,27 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard />
-      }
+      },
+      {
+        path: "/dashboard/all",
+        element: <HomeDashboard />
+      },
+      {
+        path: "/dashboard/products",
+        element: <AllProducts />
+      },
+      {
+        path: "/dashboard/addproduct",
+        element: <AddProduct />
+      },
+      {
+        path: "/dashboard/updateproduct",
+        element: <UpdateProduct />
+      },
+      {
+        path: "/dashboard/users",
+        element: <Users />
+      },
     ]
   }
 ]);
