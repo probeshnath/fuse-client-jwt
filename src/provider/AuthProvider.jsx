@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react'
 import auth from '../../firebase.config'
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
 import { GoogleAuthProvider } from "firebase/auth";
+import axios from 'axios';
 
 export const AuthContext = createContext(null)
 
@@ -45,6 +46,34 @@ const AuthProvider = ({ children }) => {
         setUser(currentUser)
         setLoading(false)
         console.log(currentUser)
+
+        // const userEmail = currentUser?.email || user?.email;
+        // const loggedUser = {email: userEmail}
+
+        // console.log(" loggeg user", loggedUser)
+
+        // if(currentUser){
+        //   axios.post("http://localhost:5000/jwt", loggedUser,{withCredentials:true})
+        //   .then((res)=>{
+        //     console.log("tokken from",res.data)
+        // })
+        // .catch((error)=>{
+        //   console.log(error)
+        // })
+        //   fetch("http://localhost:5000/jwt",{
+        //     method:"POST",
+        //     headers:{
+        //      'content-type' : 'application/json'
+        //     },
+        //     body: JSON.stringify(loggedUser)
+        //   })
+        //   .then((res)=>{console.log(res)})
+        //   .catch((err)=>{
+        //     console.log(err)
+        //   })
+        // }else{
+        //   console.log("fail to token")
+        // }
       
     })
     return () => {

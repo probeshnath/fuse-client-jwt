@@ -1,9 +1,20 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { useLoaderData } from 'react-router-dom'
 
 const Products = () => {
-  const allProducts = useLoaderData();
-  console.log("this is products list",allProducts)
+  const [allProducts, setAllProducts] = useState()
+  // const allProducts = useLoaderData();
+  // console.log("this is products list",allProducts)
+
+  useEffect(()=>{
+    axios.get('http://localhost:5000/products',{ withCredentials:true })
+    .then(res =>{
+      setAllProducts(res.data)
+    })
+
+  },[])
+
   return (
     <div>
       <h2>Products</h2>

@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../provider/AuthProvider'
 import SocialLogin from '../components/SocialLogin';
+import axios from 'axios';
 
 const Login = () => {
   const {login} = useContext(AuthContext);
@@ -21,8 +22,20 @@ const Login = () => {
     // firebase register
     login(email,password)
     .then(result => {
-      console.log(result.user)
-      navigate("/")
+      // console.log(result.user)
+      const loggedInUser = result.user;
+      const user = {email}
+
+      axios.post("http://localhost:5000/jwt",user,{withCredentials:true})
+      .then(res =>{
+        // console.log(res.data)
+        if(res.data.success){
+          navigate("/")
+        }
+      })
+
+
+
     })
     .catch((err)=>{
       console.log(err)
